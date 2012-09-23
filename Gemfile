@@ -2,7 +2,7 @@ source "http://rubygems.org"
 gem "activerecord", "~> 3.2.0"
 
 group :development do
-
+  gem 'pry'
   gem 'sqlite3'
   gem "rspec",        "~> 2.8.0"
   gem "rdoc",         "~> 3.12"

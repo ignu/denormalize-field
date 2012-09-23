@@ -1,19 +1,15 @@
 = denormalize-field
 
-Description goes here.
+Denormalizes fields in ActiveRecord models in order to avoid SQL joins and hydrating Ruby Objects to obtain a simple fields.
 
-== Contributing to denormalize-field
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
-* Fork the project.
-* Start a feature/bugfix branch.
-* Commit and push until you are happy with your contribution.
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+= Usage
 
-== Copyright
+    class Post < ActiveRecord::Base
+      belongs_to :category
+      denormalizes :category => :name
+    end
 
-Copyright (c) 2012 Len Smith. See LICENSE.txt for
-further details.
+    category = Category.create(:name => "News")
+    post     = Post.create(:category => category)
 
+    post.category_name # "News"  (you have to create the migration to add Post#category_name manually)
