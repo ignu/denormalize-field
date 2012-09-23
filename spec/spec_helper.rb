@@ -8,5 +8,18 @@ require 'denormalize-field'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
-  
 end
+
+ActiveRecord::Base.establish_connection(:adapter => "sqlite3",
+                                       :database => File.dirname(__FILE__) + "/denormalize-field.sqlite3")
+
+ActiveRecord::Base.connection.create_table(:categories) do |t|
+  t.string :name
+end
+
+ActiveRecord::Base.connection.create_table(:posts) do |t|
+  t.string :category_id
+  t.string :category_name
+end
+
+
