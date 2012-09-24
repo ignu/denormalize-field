@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Len Smith"]
   s.date = "2012-09-24"
-  s.description = "TODO: longer description of your gem"
+  s.description = "Denormalize ActiveRecord fields for performance reasons"
   s.email = "len@barrison.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -31,11 +31,11 @@ Gem::Specification.new do |s|
     "spec/schema.rb",
     "spec/spec_helper.rb"
   ]
-  s.homepage = "http://github.com/ignu/denormalize-field"
+  s.homepage = "http://github.com/Barrison/denormalize-field"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.23"
-  s.summary = "TODO: one-line summary of your gem"
+  s.summary = "Denormalize ActiveRecord fields"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
