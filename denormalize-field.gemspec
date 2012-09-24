@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "denormalize-field.gemspec",
     "lib/denormalize-field.rb",
     "spec/denormalize-field_spec.rb",
     "spec/schema.rb",
