@@ -15,10 +15,10 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "denormalize-field"
-  gem.homepage = "http://github.com/ignu/denormalize-field"
+  gem.homepage = "http://github.com/Barrison/denormalize-field"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Denormalize ActiveRecord fields}
+  gem.description = %Q{Denormalize ActiveRecord fields for performance reasons}
   gem.email = "len@barrison.com"
   gem.authors = ["Len Smith"]
   # dependencies defined in Gemfile
