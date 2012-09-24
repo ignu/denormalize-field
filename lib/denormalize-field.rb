@@ -1,14 +1,21 @@
 require 'active_record'
+require 'active_support'
+require 'active_support/inflector'
 
 module DenormalizeFields
   def denormalizes(hash)
     hash.keys.each do |key|
-      field = hash[key]
+      _field_name = hash[key]
+
       before_save do
-        self.send "#{key}_#{field}=", self.send(key).send(field)
-        Category.after_save do
-          self.posts.each do |post|
-            post.update_attribute :category_name, self.name
+        _denormalized_field_name = "#{key}_#{_field_name}"
+        self.send "#{_denormalized_field_name}=", self.send(key).send(_field_name)
+        _original_klass = self.class
+
+        _klass = key.to_s.camelize.constantize
+        _klass.after_save do
+          self.send(_original_klass.name.downcase.pluralize).each do |child|
+            child.update_attribute _denormalized_field_name, self.send(_field_name)
           end
         end
       end
