@@ -8,6 +8,7 @@ require 'denormalize-field'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
+  config.mock_with :mocha
   config.before(:each) do
     Post.delete_all
     Category.delete_all
@@ -21,10 +22,11 @@ ActiveRecord::Base.connection.drop_table(:categories)
 ActiveRecord::Base.connection.drop_table(:posts)
 ActiveRecord::Base.connection.create_table(:categories) do |t|
   t.string :name
+  t.timestamps
 end
+
 ActiveRecord::Base.connection.create_table(:posts) do |t|
   t.string :category_id
   t.string :category_name
+  t.timestamps
 end
-
-
