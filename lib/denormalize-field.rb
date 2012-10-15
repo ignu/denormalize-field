@@ -13,13 +13,13 @@ module DenormalizeFields
           self.send "#{_denormalized_field_name}=", self.send(key).send(_field_name)
         end
         _original_klass = self.class
+      end
 
-        _klass = key.to_s.camelize.constantize
-        _klass.after_save do
-          if self.send "#{_field_name}_changed?"
-            self.send(_original_klass.name.downcase.pluralize).each do |child|
-              child.update_attribute _denormalized_field_name, self.send(_field_name)
-            end
+      _klass = key.to_s.camelize.constantize
+      _klass.after_save do
+        if self.send "#{_field_name}_changed?"
+          self.send(_original_klass.name.downcase.pluralize).each do |child|
+            child.update_attribute _denormalized_field_name, self.send(_field_name)
           end
         end
       end
