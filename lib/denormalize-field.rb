@@ -9,7 +9,9 @@ module DenormalizeFields
 
       before_save do
         _denormalized_field_name = "#{key}_#{_field_name}"
-        self.send "#{_denormalized_field_name}=", self.send(key).send(_field_name)
+        if self.send(key)
+          self.send "#{_denormalized_field_name}=", self.send(key).send(_field_name)
+        end
         _original_klass = self.class
 
         _klass = key.to_s.camelize.constantize

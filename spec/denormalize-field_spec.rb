@@ -27,4 +27,9 @@ describe "DenormalizeField" do
     post.reload
     post.category_name.should == "Sports"
   end
+
+  it "handles nil associations" do
+    post.category = nil
+    expect { post.save! }.to_not raise_error
+  end
 end
