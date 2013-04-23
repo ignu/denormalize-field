@@ -1,0 +1,7 @@
+development:
+  adapter:  postgresql
+  database: denormalizefielddev
+
+test: &test
+  adapter:  postgresql
+  database: denormalizefieldtest
