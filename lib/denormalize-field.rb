@@ -2,7 +2,21 @@ require 'active_record'
 require 'active_support'
 require 'active_support/inflector'
 
+class DenormalizeUpdater
+  def self.sync_all
+    DenormalizeFields::UPDATE_STATEMENTS.each do |sql|
+      p "EXECUTING:"
+      p sql
+      p "-" * 88
+      DenormalizeFields::CLASSES.first.connection.execute sql
+    end
+  end
+end
+
 module DenormalizeFields
+  UPDATE_STATEMENTS = []
+  CLASSES = []
+
   def denormalizes(hash)
     hash.keys.each do |key|
       _field_name = hash[key]
@@ -23,6 +37,11 @@ module DenormalizeFields
           end
         end
       end
+      # postgres sql? "UPDATE #{table_name} SET #{_denormalized_field_name} = #{_klass.table_name}.#{_field_name} FROM #{table_name} c1 INNER JOIN #{_klass.table_name} c2 on c2.id = c1.#{key}_id"
+
+      UPDATE_STATEMENTS.push 
+      "UPDATE #{table_name} SET #{_denormalized_field_name} = #{_klass.table_name}.#{_field_name} FROM #{table_name} c1 INNER JOIN #{_klass.table_name} c2 on c2.id = c1.#{key}_id"
+      CLASSES.push self
     end
   end
 end

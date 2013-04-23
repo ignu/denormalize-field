@@ -9,6 +9,18 @@ class Post < ActiveRecord::Base
   denormalizes category: :name
 end
 
+describe DenormalizeUpdater do
+  let(:category) { Category.new(name: "News") }
+  let(:post)     { Post.create(category: category) }
+
+  it "syncs all records" do
+    post.connection.execute("UPDATE posts set category_name = 'cool story';")
+    DenormalizeUpdater.sync_all
+    post.reload
+    post.category_name.should == "News"
+  end
+end
+
 describe "DenormalizeField" do
   let(:category) { Category.new(name: "News") }
   let(:post)     { Post.new(category: category) }
