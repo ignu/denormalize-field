@@ -36,7 +36,7 @@ module DenormalizeFields
       end
 
       self.class.class_eval <<-EVAL
-        def out_of_sync
+        define_method "#{_klass.table_name}_out_of_sync" do
           #{self.name}.where("id in (SELECT c1.id FROM #{table_name} c1 INNER JOIN #{_klass.table_name} c2 on c2.id = c1.#{key}_id where c1.#{_denormalized_field_name} != c2.#{_field_name})")
         end
         EVAL

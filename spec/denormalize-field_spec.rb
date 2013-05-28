@@ -16,7 +16,7 @@ describe DenormalizeUpdater do
   it "syncs all records" do
     post.connection.execute("UPDATE posts set category_name = 'cool story';")
     in_sync_post = Post.create(category: category)
-    Post.out_of_sync.should == [post]
+    Post.categories_out_of_sync.should == [post]
   end
 end
 
