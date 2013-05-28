@@ -1,6 +1,7 @@
 = denormalize-field
 
-Postgres only as of 10
+Postgres only as of 0.2
+
 Denormalizes fields in ActiveRecord models in order to avoid SQL joins and hydrating Ruby Objects to obtain a simple fields.
 
 = Usage
