@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "denormalize-field"
-  s.version = "0.1.3"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Len Smith"]
-  s.date = "2012-10-15"
+  s.date = "2013-05-28"
   s.description = "Denormalize ActiveRecord fields for performance reasons"
   s.email = "len@barrison.com"
   s.extra_rdoc_files = [
@@ -25,8 +25,12 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "config/database.yml",
     "denormalize-field.gemspec",
     "lib/denormalize-field.rb",
+    "lib/tasks.rb",
+    "lib/tasks/denormalize-tasks.rake",
+    "spec/db_connect.rb",
     "spec/denormalize-field_spec.rb",
     "spec/schema.rb",
     "spec/spec_helper.rb"
@@ -42,16 +46,18 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<activerecord>, ["~> 3.2.0"])
+      s.add_development_dependency(%q<em-synchrony>, [">= 0"])
       s.add_development_dependency(%q<pry>, [">= 0"])
-      s.add_development_dependency(%q<sqlite3>, [">= 0"])
+      s.add_development_dependency(%q<pg>, [">= 0"])
       s.add_development_dependency(%q<rspec>, ["~> 2.8.0"])
       s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.4"])
       s.add_development_dependency(%q<mocha>, [">= 0"])
     else
       s.add_dependency(%q<activerecord>, ["~> 3.2.0"])
+      s.add_dependency(%q<em-synchrony>, [">= 0"])
       s.add_dependency(%q<pry>, [">= 0"])
-      s.add_dependency(%q<sqlite3>, [">= 0"])
+      s.add_dependency(%q<pg>, [">= 0"])
       s.add_dependency(%q<rspec>, ["~> 2.8.0"])
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
@@ -59,8 +65,9 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<activerecord>, ["~> 3.2.0"])
+    s.add_dependency(%q<em-synchrony>, [">= 0"])
     s.add_dependency(%q<pry>, [">= 0"])
-    s.add_dependency(%q<sqlite3>, [">= 0"])
+    s.add_dependency(%q<pg>, [">= 0"])
     s.add_dependency(%q<rspec>, ["~> 2.8.0"])
     s.add_dependency(%q<rdoc>, ["~> 3.12"])
     s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
