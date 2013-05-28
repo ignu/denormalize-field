@@ -1,15 +1,17 @@
 = denormalize-field
 
+Postgres only as of 10
 Denormalizes fields in ActiveRecord models in order to avoid SQL joins and hydrating Ruby Objects to obtain a simple fields.
 
 = Usage
 
-    class Post < ActiveRecord::Base
-      belongs_to :category
-      denormalizes :category => :name
-    end
+  class Post < ActiveRecord::Base
+    belongs_to :category
+    denormalizes :category => :name
+  end
 
-    category = Category.create(:name => "News")
-    post     = Post.create(:category => category)
+  category = Category.create(:name => "News")
+  post     = Post.create(:category => category)
 
-    post.category_name # "News"  (you have to create the migration to add Post#category_name manually)
+  post.category_name # "News"  (you have to create the migration to add Post#category_name manually)
+
