@@ -39,6 +39,15 @@ describe "DenormalizeField" do
     post.category_name.should == "Sports"
   end
 
+  it "handles field values with quotes" do
+    post.save!
+    category = Category.first
+    category.name = "Champion's League"
+    category.save!
+    post.reload
+    post.category_name.should == "Champion's League"
+  end
+
   it "handles nil associations" do
     post.category = nil
     expect { post.save! }.to_not raise_error
