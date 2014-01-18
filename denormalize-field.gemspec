@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "denormalize-field"
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Len Smith"]
-  s.date = "2013-05-28"
+  s.date = "2014-01-18"
   s.description = "Denormalize ActiveRecord fields for performance reasons"
   s.email = "len@barrison.com"
   s.extra_rdoc_files = [
