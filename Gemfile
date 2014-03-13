@@ -1,5 +1,5 @@
 source "http://rubygems.org"
-gem "activerecord", "~> 3.2.0"
+gem "activerecord", "> 4.0.0"
 
 group :development, :test do
   gem 'em-synchrony'
