@@ -63,7 +63,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord (> 4.0.0)
+  activerecord (> 3.2.0)
   em-synchrony
   jeweler (~> 1.8.4)
   mocha
