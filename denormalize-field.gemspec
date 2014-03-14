@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "denormalize-field"
-  s.version = "0.2.1"
+  s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Len Smith"]
-  s.date = "2014-01-18"
+  s.date = "2014-03-14"
   s.description = "Denormalize ActiveRecord fields for performance reasons"
   s.email = "len@barrison.com"
   s.extra_rdoc_files = [
@@ -54,7 +54,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.4"])
       s.add_development_dependency(%q<mocha>, [">= 0"])
     else
-      s.add_dependency(%q<activerecord>, ["~> 3.2.0"])
+      s.add_dependency(%q<activerecord>, ["> 3.2.0"])
       s.add_dependency(%q<em-synchrony>, [">= 0"])
       s.add_dependency(%q<pry>, [">= 0"])
       s.add_dependency(%q<pg>, [">= 0"])
@@ -64,7 +64,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<mocha>, [">= 0"])
     end
   else
-    s.add_dependency(%q<activerecord>, ["~> 3.2.0"])
+    s.add_dependency(%q<activerecord>, ["> 3.2.0"])
     s.add_dependency(%q<em-synchrony>, [">= 0"])
     s.add_dependency(%q<pry>, [">= 0"])
     s.add_dependency(%q<pg>, [">= 0"])
