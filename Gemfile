@@ -1,12 +1,13 @@
 source "http://rubygems.org"
+
 gem "activerecord", "> 3.2.0"
+gem "rake"
 
 group :development, :test do
-  gem 'em-synchrony'
   gem 'pry'
   gem 'pg'
-  gem "rspec",        "~> 2.8.0"
-  gem "rdoc",         "~> 3.12"
-  gem "jeweler",      "~> 1.8.4"
+  gem 'em-synchrony'
+  gem "rspec"
+  gem "jeweler", "~> 2.3.1"
   gem "mocha"
 end

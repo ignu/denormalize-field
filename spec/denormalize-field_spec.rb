@@ -11,12 +11,12 @@ end
 
 describe DenormalizeUpdater do
   let(:category) { Category.new(name: "News") }
-  let(:post)     { Post.create(category: category) }
+  let!(:post)    { Post.create(category: category) }
 
   it "syncs all records" do
-    post.connection.execute("UPDATE posts set category_name = 'cool story';")
+    Post.connection.execute("UPDATE posts set category_name = 'cool story';")
     in_sync_post = Post.create(category: category)
-    Post.categories_out_of_sync.should == [post]
+    Post.categories_out_of_sync.to_a.should == [post]
   end
 end
 
