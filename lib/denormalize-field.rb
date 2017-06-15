@@ -30,7 +30,7 @@ module DenormalizeFields
       update_sql = "UPDATE #{table_name} SET #{_denormalized_field_name} = c2.#{_field_name} FROM #{table_name} c1 INNER JOIN #{_klass.table_name} c2 on c2.id = c1.#{key}_id"
 
       _klass.after_save do
-        if self.send "#{_field_name}_changed?"
+        if self.send "saved_change_to_#{_field_name}?"
           quoted_value = ActiveRecord::Base.connection.quote self.send(_field_name)
           update_sql = "UPDATE #{_original_klass.table_name} SET #{_denormalized_field_name} = #{quoted_value} where #{key}_id = #{self.id}"
           self.class.connection.execute update_sql

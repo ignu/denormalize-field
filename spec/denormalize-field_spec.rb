@@ -16,7 +16,7 @@ describe DenormalizeUpdater do
   it "syncs all records" do
     Post.connection.execute("UPDATE posts set category_name = 'cool story';")
     in_sync_post = Post.create(category: category)
-    Post.categories_out_of_sync.to_a.should == [post]
+    expect(Post.categories_out_of_sync.to_a).to eq [post]
   end
 end
 
@@ -27,7 +27,7 @@ describe "DenormalizeField" do
   it "denormalizes fields on save" do
     post.save!
     post.reload
-    post.category_name.should == "News"
+    expect(post.category_name).to eq "News"
   end
 
   it "updates the denormalized field when the column changes" do
@@ -36,7 +36,7 @@ describe "DenormalizeField" do
     category.name = "Sports"
     category.save!
     post.reload
-    post.category_name.should == "Sports"
+    expect(post.category_name).to eq "Sports"
   end
 
   it "handles field values with quotes" do
@@ -45,7 +45,7 @@ describe "DenormalizeField" do
     category.name = "Champion's League"
     category.save!
     post.reload
-    post.category_name.should == "Champion's League"
+    expect(post.category_name).to eq "Champion's League"
   end
 
   it "handles nil associations" do
@@ -60,6 +60,6 @@ describe "DenormalizeField" do
     Post.any_instance.expects(:update_attribute).never
     category.save!
     post.reload
-    post.updated_at.should == updated_at
+    expect(post.updated_at).to eq(updated_at)
   end
 end
